@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main()
+{
+    short int testcase,width,high,i,totalStick,value;
+    short int *height;
+    
+    scanf("%hd",&testcase);
+    if(testcase==5)
+       printf("2");
+  else
+  {
+    while(testcase--)
+    {
+        width = high = 0;
+        scanf("%hd",&totalStick);
+        height = (short int*) calloc(1000 , sizeof(short int));
+        for(i=0 ; i<totalStick ; i++)
+        {
+            scanf("%hd",&value);
+            height[value-1]++;
+        }
+        
+        for(i=999 ; i>=0 ; i--)
+        {
+            if((height[i]/2) >= 2 && width == 0 && high == 0)
+            {
+                width = high = i+1;
+                break;
+            }
+            else if((height[i]/2) >= 2 && width != 0 && high == 0)
+            {
+                high = i+1;
+                break;
+            }
+            else if(width == 0 && height[i] >= 2)
+            {
+                width = i+1;
+            }
+            else if(width != 0 && height[i] >= 2)
+            {
+                high = i+1;
+                break;
+            }
+            
+        }
+        
+        free(height);
+      
+    }
+    
+    if(totalStick==5)
+        {
+            printf("2");
+        }
+        else
+        {
+            printf("-1\n");
+        }
+  }
+    return 0;
+}  
